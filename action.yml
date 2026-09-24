@@ -1,0 +1,46 @@
+name: 'SDP CI Integration'
+description: 'Sends CI/CD data from GitHub Actions to OpenText SDP / SDM.'
+branding:
+  color: blue
+  icon: arrow-up-circle
+inputs:
+  octaneUrl:
+    description: 'Url of OpenText SDP / SDM instance'
+    required: true
+  octaneSharedSpace:
+    description: 'Shared Space ID'
+    required: true
+  octaneWorkspace:
+    description: 'Workspace ID'
+    required: true
+  octaneClientId:
+    description: "OpenText SDP / SDM API Access Client ID"
+    required: true
+  octaneClientSecret:
+    description: 'OpenText SDP / SDM API Access Client Secret'
+    required: true
+  gitHubToken:
+    description: 'GitHub PAT'
+    required: true
+  serverBaseUrl:
+    description: 'URL of the organization/repository in GitHub'
+    required: true
+  pipelineNamePattern:
+    description: 'Pattern to build pipeline names'
+    required: true
+  unitTestResultsGlobPattern:
+    description: 'Pattern to search unit test result report files in artifacts'
+    required: false
+  gherkinTestResultsGlobPattern:
+    description: 'Pattern to search Gherkin test result report files in artifacts'
+    required: false
+  testingFramework:
+    description: 'Testing framework to use for the test runner'
+    required: false
+  logLevel:
+    description: 'Sets the log level (1-5): 1-trace, 2-debug, 3-info, 4-warn, 5-error'
+    required: false
+    default: 3
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
